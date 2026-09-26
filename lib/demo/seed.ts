@@ -445,9 +445,9 @@ export function seed(d: Database): void {
 
   for (let day = 365; day >= 0; day--) {
     const date = new Date(now - day * DAY);
-    const growth = 7 + (365 - day) * 0.06; // the site gets busier over the year
+    const growth = 6 + (365 - day) * 0.05 + (day < 60 ? (60 - day) * 0.12 : 0); // busier over the year, more so lately
     const weekend = date.getUTCDay() === 0 || date.getUTCDay() === 6 ? 0.65 : 1;
-    const launch = day > 40 && day < 48 ? 2.4 : 1; // a feature on a gallery, a month ago
+    const launch = day > 110 && day < 118 ? 2.4 : 1; // a feature on a gallery, some months ago
     const count = Math.max(1, Math.round(growth * weekend * launch * between(0.7, 1.3)));
 
     for (let n = 0; n < count; n++) {

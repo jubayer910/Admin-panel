@@ -4,7 +4,7 @@ An admin panel for a designer's portfolio site: projects, bookings, analytics, m
 
 Built by [Maniruzzaman Jubayer](https://maniruzzamanjubayer.com) for his portfolio, and open-sourced here with made-up data.
 
-**Live demo:** _coming with the first deploy_
+**Live demo:** [admin-panel-three-puce.vercel.app](https://admin-panel-three-puce.vercel.app)
 
 ![The overview, in the light theme](docs/overview-light.webp)
 
