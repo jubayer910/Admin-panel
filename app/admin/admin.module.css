@@ -309,9 +309,14 @@
   white-space: nowrap;
 }
 
+/* one line, always: collapsed, the label still takes space, and a wrapped
+   line would make the profile taller and push the avatar onto the switch */
 .brandText span {
+  overflow: hidden;
   font-size: 12px;
   letter-spacing: -0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--faint);
 }
 
