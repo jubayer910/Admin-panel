@@ -1,0 +1,259 @@
+/* /admin/media, inside the admin's line-art board (table.module.css): the
+   files as a ruled lattice, or as a table under the footer's band. */
+
+.views {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 8px;
+  background: var(--fill);
+}
+
+.views button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--soft);
+  cursor: pointer;
+}
+
+.views button[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--raise);
+}
+
+.views button:focus-visible {
+  outline: 2px solid var(--ink-soft);
+  outline-offset: 2px;
+}
+
+.none {
+  margin: 0;
+  padding: 48px 24px;
+  background: var(--band);
+  font-size: 14px;
+  text-align: center;
+  color: var(--soft);
+}
+
+/* ------------------------------------------------------------ grid */
+
+/* each file draws its own right and bottom rule, meeting the frame's */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 12px;
+  box-shadow: var(--hair-r), var(--hair-b);
+  transition: background-color 160ms var(--ease-out-quint);
+}
+
+.card:hover {
+  background: var(--lift);
+}
+
+/* a checkerboard behind the file, so transparent logos and badges read */
+.preview,
+.mini {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background-color: var(--checker-a);
+  background-image:
+    linear-gradient(45deg, var(--checker-b) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--checker-b) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--checker-b) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--checker-b) 75%);
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0;
+  background-size: 16px 16px;
+}
+
+.preview {
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px var(--pop-ring);
+}
+
+.preview img,
+.preview video,
+.mini img,
+.mini video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.play {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.72);
+  color: #fff;
+}
+
+.noPreview {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+.saved {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(21, 128, 61, 0.9);
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.info {
+  min-width: 0;
+  padding: 10px 2px 4px;
+}
+
+.name {
+  margin: 0;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.meta {
+  margin: 2px 0 0;
+  overflow: hidden;
+  font-size: 11.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--faint);
+}
+
+.warn {
+  color: var(--warn);
+}
+
+.actions,
+.inlineActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.actions {
+  padding: 8px 2px 2px;
+}
+
+.iconBtn {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.iconBtn:hover {
+  background: var(--surface-hover);
+}
+
+.deleteForm {
+  margin-left: auto;
+}
+
+.inlineActions .deleteForm {
+  margin-left: 0;
+}
+
+.deleteForm button {
+  height: 32px;
+  padding: 0 10px;
+  font-size: 13px;
+}
+
+/* ------------------------------------------------------------ table */
+
+.thumbCol {
+  width: 72px;
+  padding-right: 0 !important;
+}
+
+.mini {
+  width: 56px;
+  height: 40px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px var(--pop-ring);
+}
+
+.file {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.file strong {
+  display: block;
+  max-width: 320px;
+  overflow: hidden;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.file span {
+  font-size: 12px;
+}
+
+.cellSoft {
+  color: var(--text-2);
+}
+
+.savedText {
+  font-weight: 500;
+  color: var(--ok);
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    padding: 8px;
+  }
+
+  .views span {
+    display: none;
+  }
+}

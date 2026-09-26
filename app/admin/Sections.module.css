@@ -1,0 +1,137 @@
+/* Long pages: the section links under the top bar, headings for a page's
+   parts, and the save bar pinned to the foot. All in the site's line art:
+   the links are cells divided by engraved rules, like the awards band, and
+   the save bar is the footer's band. */
+
+.sectionNav {
+  position: sticky;
+  top: 60px;
+  z-index: 10;
+  display: flex;
+  margin: -8px -10px 0;
+  overflow-x: auto;
+  background: var(--glass);
+  box-shadow: var(--hair-b);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  scrollbar-width: none;
+}
+
+.sectionNav::-webkit-scrollbar {
+  display: none;
+}
+
+.sectionLink {
+  flex: 0 0 auto;
+  padding: 13px 16px 12px;
+  box-shadow: var(--hair-r);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--soft);
+  transition:
+    background-color 160ms var(--ease-out-quint),
+    color 160ms var(--ease-out-quint);
+}
+
+.sectionLink:hover {
+  background: var(--lift);
+  color: var(--ink);
+}
+
+.sectionHead {
+  scroll-margin-top: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+}
+
+.sectionNote {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--soft);
+}
+
+.sectionActions {
+  display: flex;
+  gap: 8px;
+}
+
+/* the save bar: the footer's band, pinned to the foot while the form
+   scrolls, its engraved rule running out as far as the frames' */
+.saveBar {
+  position: sticky;
+  bottom: 0;
+  /* under the section links when it scrolls up past them */
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 24px -10px 0;
+  padding: 12px 12px 12px 20px;
+  background: var(--band);
+  box-shadow: var(--hair-t);
+}
+
+.saveState {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--soft);
+}
+
+.saveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  transition: background-color 200ms var(--ease-out-quint);
+}
+
+.saveBar[data-dirty] .saveState {
+  color: var(--ink);
+}
+
+.saveBar[data-dirty] .saveDot {
+  background: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+}
+
+.discard {
+  height: 36px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--soft);
+  cursor: pointer;
+}
+
+.discard:hover:not(:disabled) {
+  background: var(--fill);
+  color: var(--ink);
+}
+
+.discard:disabled {
+  opacity: 0.4;
+  cursor: default;
+}

@@ -1,0 +1,532 @@
+/* /admin/works board, inside the admin's line-art board (table.module.css):
+   the list is a ruled table under the footer's band, the grid a ruled
+   lattice of covers; the site's dark pill for anything "on". */
+
+/* ------------------------------------------------------------ view switch */
+
+.views {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 8px;
+  background: var(--fill);
+}
+
+.views button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--soft);
+  cursor: pointer;
+}
+
+.views button[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--raise);
+}
+
+.hintRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 16px;
+  min-height: 44px;
+  padding: 10px 16px;
+  box-shadow: var(--hair-b);
+}
+
+.hint {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+}
+
+/* the handle's dots, in the sentence */
+.hint .gripIcon {
+  display: inline;
+  width: 8px;
+  height: 12px;
+  margin: 0 3px;
+  vertical-align: -1px;
+}
+
+.status {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+}
+
+.status[data-kind="saved"] {
+  color: var(--ok);
+}
+
+.status[data-kind="error"] {
+  color: var(--bad);
+}
+
+.empty {
+  margin: 0;
+  padding: 48px 20px;
+  background: var(--band);
+  font-size: 14px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------ shared bits */
+
+.iconBtn {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.iconBtn:hover:not(:disabled) {
+  background: var(--fill);
+}
+
+.iconBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.handle {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fainter);
+  cursor: grab;
+  touch-action: none;
+  transition:
+    background-color 160ms var(--ease-out-quint),
+    color 160ms var(--ease-out-quint);
+}
+
+.handle:hover,
+.handle:focus-visible {
+  background: var(--fill);
+  color: var(--ink);
+}
+
+.handle:active {
+  cursor: grabbing;
+}
+
+.handleOnMedia {
+  width: 28px;
+  height: 28px;
+  /* on the cover: white in either theme */
+  background: rgba(255, 255, 255, 0.92);
+  color: #191919;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.handleOnMedia:hover,
+.handleOnMedia:focus-visible {
+  background: var(--surface);
+}
+
+.handle:focus-visible,
+.views button:focus-visible,
+.iconBtn:focus-visible,
+.rowMain:focus-visible,
+.cardOpen:focus-visible,
+.cardText:focus-visible {
+  outline: 2px solid var(--ink-soft);
+  outline-offset: 2px;
+}
+
+/* position in the current view */
+.place {
+  flex: 0 0 auto;
+  min-width: 22px;
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--fainter);
+}
+
+.rowTitle {
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  color: var(--ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rowMeta {
+  overflow: hidden;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.noThumb {
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: var(--fainter);
+}
+
+/* the homepage switch: the pricing card's toggle, small */
+.homeSwitch {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.homeSwitch input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.homeSwitch input:focus-visible + .switch {
+  outline: 2px solid var(--ink-soft);
+  outline-offset: 2px;
+}
+
+.switch {
+  position: relative;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--switch-off);
+  transition: background-color 200ms var(--ease-out-quint);
+}
+
+.switch span {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: transform 200ms var(--ease-out-quint);
+}
+
+.switch[data-on] {
+  background: var(--switch-on);
+}
+
+.switch[data-on] span {
+  transform: translateX(12px);
+}
+
+.switchLabel {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------ list */
+
+/* one grid for the head and every row, so the columns line up */
+.listHead,
+.rowHead {
+  display: grid;
+  grid-template-columns: 26px 26px 64px minmax(0, 1fr) 128px 128px 84px;
+  align-items: center;
+  gap: 12px;
+}
+
+/* the column heads: the footer's band, as on every admin table */
+.listHead {
+  height: 38px;
+  padding: 0 14px 0 10px;
+  background: var(--band);
+  box-shadow: var(--hair-b);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+.listHead span:nth-child(2) {
+  text-align: right;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  position: relative;
+  box-shadow: var(--hair-b);
+  transition: background-color 160ms var(--ease-out-quint);
+}
+
+.row:hover {
+  background: var(--lift);
+}
+
+.row[data-dragging] {
+  opacity: 0.35;
+}
+
+.row[data-lifted],
+.card[data-lifted] {
+  background: var(--surface);
+  box-shadow:
+    0 12px 32px var(--pop-shadow),
+    0 0 0 1px var(--pop-ring);
+  cursor: grabbing;
+}
+
+.row[data-lifted] {
+  transform: scale(1.01);
+}
+
+.rowHead {
+  min-height: 62px;
+  padding: 8px 14px 8px 10px;
+}
+
+.rowThumb {
+  width: 64px;
+  height: 44px;
+  border-radius: 6px;
+  background: var(--thumb-bg);
+  object-fit: cover;
+  object-position: left top;
+}
+
+.rowMain {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rowMoves {
+  display: flex;
+  gap: 4px;
+}
+
+.editBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.editBtn:hover {
+  background: var(--surface-hover);
+}
+
+.editBtn:focus-visible {
+  outline: 2px solid var(--ink-soft);
+  outline-offset: 1px;
+}
+
+/* ------------------------------------------------------------ grid */
+
+/* a ruled lattice: each cover draws its own right and bottom rule, which
+   meet the frame's own at the edges */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 14px;
+  box-shadow: var(--hair-r), var(--hair-b);
+  transition: background-color 160ms var(--ease-out-quint);
+}
+
+.card:hover {
+  background: var(--lift);
+}
+
+.card[data-dragging] {
+  opacity: 0.35;
+}
+
+.card[data-lifted] {
+  transform: rotate(-1deg) scale(1.02);
+}
+
+.cardMedia {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.cardOpen {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* the /work grid's own shape and crop */
+.cardThumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.14;
+  background: var(--thumb-bg);
+  object-fit: cover;
+  object-position: left top;
+  transition: transform 400ms var(--ease-out-quint);
+}
+
+.cardOpen:hover .cardThumb {
+  transform: scale(1.02);
+}
+
+.cardTop {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.cardTop > * {
+  pointer-events: auto;
+}
+
+.cardPlace {
+  min-width: 24px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(20, 20, 20, 0.72);
+  font-size: 11px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: #fff;
+}
+
+.cardFoot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 2px 0;
+}
+
+.cardText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.card .switchLabel {
+  display: none;
+}
+
+/* ------------------------------------------------------------ narrow */
+
+@media (max-width: 760px) {
+  .listHead,
+  .rowHead {
+    grid-template-columns: 26px 56px minmax(0, 1fr) auto 32px;
+    gap: 10px;
+  }
+
+  .listHead {
+    display: none;
+  }
+
+  .rowThumb {
+    width: 56px;
+    height: 40px;
+  }
+
+  .rowMoves,
+  .row .switchLabel,
+  .place,
+  .editBtn span {
+    display: none;
+  }
+
+  .editBtn {
+    width: 32px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    padding: 10px;
+  }
+}

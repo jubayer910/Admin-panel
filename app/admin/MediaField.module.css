@@ -1,0 +1,170 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-2);
+}
+
+.drop {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 200px;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+  transition:
+    border-color 160ms var(--ease-out-quint),
+    background-color 160ms var(--ease-out-quint);
+}
+
+.drop[data-empty] {
+  cursor: pointer;
+}
+
+.drop[data-empty]:hover,
+.drop[data-dragging] {
+  border-color: var(--ink-soft);
+  background: var(--lift);
+}
+
+.square {
+  aspect-ratio: 1;
+  max-width: 160px;
+  max-height: 160px;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+}
+
+.placeholder small {
+  font-size: 11px;
+  color: var(--fainter);
+}
+
+.preview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--checker-a);
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.miniBtn {
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 160ms var(--ease-out-quint);
+}
+
+.miniBtn:hover:not(:disabled) {
+  background: var(--fill);
+}
+
+.miniBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.danger {
+  color: var(--bad);
+  border-color: var(--bad-line);
+}
+
+.hint {
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+}
+
+.error {
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: var(--bad);
+}
+
+.library {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 6px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--lift);
+}
+
+.libItem {
+  aspect-ratio: 1;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.libItem:hover {
+  border-color: var(--ink-soft);
+}
+
+.libItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.libVideo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 11px;
+  color: var(--muted);
+  background: var(--thumb-bg);
+}
+
+/* what the upload was converted to, and how much smaller it got */
+.saved {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ok);
+}

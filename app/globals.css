@@ -1,0 +1,90 @@
+/* =========================================================
+   Design tokens + base
+   The portfolio site's tokens; the admin reads these
+   ========================================================= */
+
+:root {
+  /* colour */
+  --page-bg: rgb(245, 245, 245);
+  --card-bg: rgb(255, 255, 255);
+  --panel-bg: rgb(248, 248, 248);
+  --ink: rgb(0, 0, 0);
+  --ink-soft: rgb(25, 25, 25);
+  --muted: rgb(102, 102, 102);
+  --border: rgb(227, 227, 227);
+  --toggle-track: rgba(61, 40, 40, 0.08);
+  --toggle-knob: rgb(2, 1, 22);
+  --wa-green: #25d366;
+
+  /* type - Roobert is licensed, see README. Falls back to Geist. */
+  --font-display: var(--font-roobert), var(--font-geist), system-ui, sans-serif;
+  --font-body: var(--font-geist), system-ui, sans-serif;
+
+  /* layout (§5) */
+  --shell-max: 1440px;
+  --shell-pad: 34px;
+  --shell-gap: 34px;
+  --sidebar-w: 434px;
+  /* centre of the gutter between the two columns - fixed at every width */
+  --gutter-centre: 485px;
+
+  /* hairlines (§6) - engraved: 1px white highlight + 1px shadow under it,
+     measured off the Figma export (255 then 220 on a 245 ground) */
+  --rule-highlight: rgb(255, 255, 255);
+  --rule-shadow: rgb(220, 220, 220);
+
+  /* motion (§8) */
+  --roll-duration: 500ms;
+  --roll-stagger: 18ms;
+  --ease-out-quint: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--page-bg);
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "blwf" 1, "cv03" 1, "cv04" 1, "cv09" 1, "cv11" 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Respect users who ask for less motion - the roll and the toggle both
+   degrade to an instant state change. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

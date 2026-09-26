@@ -1,0 +1,1629 @@
+/* Admin panel - the site's own design language, run as an enterprise tool:
+   the #F5F5F5 ground, Geist for the interface and Roobert for headings, the
+   site's dark/light button pair and Hugeicons. Nothing sits in a white box:
+   the parts are drawn with the site's line art, as its pages are. The
+   engraved hairline (a white line over its grey shadow) frames each part,
+   running 10px past its corners the way the site's top rule crosses its side
+   rules; frames 20px apart meet into one continuous rule. The footer's
+   cross-hatch marks bands: table heads, the welcome band, empty states. */
+
+/* ------------------------------------------------------------ themes */
+
+/* Every colour the admin paints is a token, so the dark version swaps them
+   in one place. Light is the site's own; dark follows the reference dark
+   CRM (a #151515 ground, #1E1E1E controls, an indigo primary), and keeps
+   the line art: the engraved hairline becomes a lighter line over a
+   darker one, the footer's cross-hatch sits on #1A1A1A. The theme comes
+   from the admin's own switch (data-theme light or dark), else the
+   system's (data-theme system). */
+.app,
+.login {
+  --side-bg: #efefef;
+  --line: rgba(0, 0, 0, 0.07);
+  --text-2: #4c4c4c;
+  --soft: #6b6b6b;
+  --faint: #8f8f8f;
+  --fainter: #a3a3a3;
+  --surface: #fff;
+  --surface-hover: #fafafa;
+  --nav-active: #fff;
+  --border-hover: #cfcfcf;
+  --border-strong: #cdcdcd;
+  --fill: rgba(0, 0, 0, 0.05);
+  --lift: rgba(255, 255, 255, 0.55);
+  --lift-2: rgba(255, 255, 255, 0.75);
+  --glass: rgba(245, 245, 245, 0.9);
+  --band-bg: #efefef;
+  --thumb-bg: #ebebeb;
+  --avatar-bg: #ebebeb;
+  --avatar-ring: #fff;
+  --checker-a: #f4f4f4;
+  --checker-b: #ececec;
+  --primary: #191919;
+  --primary-hover: #000;
+  --on-primary: #fff;
+  --on-ink: #fff;
+  --switch-on: #191919;
+  --switch-off: rgba(0, 0, 0, 0.12);
+  --tip-bg: #191919;
+  --tip-fg: #fff;
+  --toast-bg: #191919;
+  --toast-fg: #fff;
+  --ok: #15803d;
+  --ok-bg: rgba(21, 128, 61, 0.09);
+  --ok-solid: #15803d;
+  --bad: #b42318;
+  --bad-bg: rgba(180, 35, 24, 0.07);
+  --bad-line: rgba(180, 35, 24, 0.25);
+  --bad-solid: #b42318;
+  --warn: #b45309;
+  --warn-bg: rgba(180, 83, 9, 0.08);
+  --ring: 0 0 0 3px rgba(25, 25, 25, 0.1);
+  --raise: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --pop-ring: rgba(0, 0, 0, 0.06);
+  --pop-shadow: rgba(0, 0, 0, 0.14);
+  --scrim: rgba(24, 24, 24, 0.28);
+  --hatch-veil: transparent;
+
+  /* the engraved hairline as inset shadows, one per edge of an element */
+  --hair-t: inset 0 1px 0 var(--rule-highlight), inset 0 2px 0 var(--rule-shadow);
+  --hair-b: inset 0 -1px 0 var(--rule-shadow), inset 0 -2px 0 var(--rule-highlight);
+  --hair-l: inset 1px 0 0 var(--rule-highlight), inset 2px 0 0 var(--rule-shadow);
+  --hair-r: inset -1px 0 0 var(--rule-shadow), inset -2px 0 0 var(--rule-highlight);
+  /* the footer's band: its grey under the cross-hatch */
+  --band: url("/brand/footer-pattern-wide.svg") left center / auto 82px repeat-x, var(--band-bg);
+
+  color-scheme: light;
+  color: var(--ink-soft);
+}
+
+.app[data-theme="dark"],
+.login[data-theme="dark"] {
+  --page-bg: #151515;
+  --card-bg: #1c1c1c;
+  --panel-bg: #1a1a1a;
+  --ink: #f3f3f3;
+  --ink-soft: #e6e6e6;
+  --muted: #8a8a8a;
+  --border: #2a2a2a;
+  --rule-highlight: #262626;
+  --rule-shadow: #0b0b0b;
+  --side-bg: #111111;
+  --line: rgba(255, 255, 255, 0.07);
+  --text-2: #c7c7c7;
+  --soft: #8a8a8a;
+  --faint: #6b6b6b;
+  --fainter: #525252;
+  --surface: #1e1e1e;
+  --surface-hover: #252525;
+  --nav-active: #262626;
+  --border-hover: #3a3a3a;
+  --border-strong: #353535;
+  --fill: rgba(255, 255, 255, 0.07);
+  --lift: rgba(255, 255, 255, 0.025);
+  --lift-2: rgba(255, 255, 255, 0.05);
+  --glass: rgba(21, 21, 21, 0.88);
+  --band-bg: #1a1a1a;
+  --thumb-bg: #232323;
+  --avatar-bg: #262626;
+  --avatar-ring: #262626;
+  --checker-a: #1e1e1e;
+  --checker-b: #262626;
+  --primary: #3b1fe5;
+  --primary-hover: #4b33f0;
+  --on-primary: #fff;
+  --on-ink: #151515;
+  --switch-on: #3b1fe5;
+  --switch-off: rgba(255, 255, 255, 0.14);
+  --tip-bg: #2a2a2a;
+  --tip-fg: #f3f3f3;
+  --toast-bg: #232323;
+  --toast-fg: #f3f3f3;
+  --ok: #7fd1a0;
+  --ok-bg: #1b3b2a;
+  --ok-solid: #1f7a45;
+  --bad: #f4a3a9;
+  --bad-bg: #3e1c1c;
+  --bad-line: rgba(244, 163, 169, 0.3);
+  --bad-solid: #b42318;
+  --warn: #e8b98f;
+  --warn-bg: #41271d;
+  --ring: 0 0 0 3px rgba(99, 80, 255, 0.35);
+  --raise: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --pop-ring: rgba(255, 255, 255, 0.07);
+  --pop-shadow: rgba(0, 0, 0, 0.5);
+  --scrim: rgba(0, 0, 0, 0.6);
+  --hatch-veil: rgba(21, 21, 21, 0.7);
+  /* the cross-hatch, veiled: on the dark ground it would shout */
+  --band: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)),
+    url("/brand/footer-pattern-wide.svg") left center / auto 82px repeat-x, var(--band-bg);
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  .app[data-theme="system"],
+  .login[data-theme="system"] {
+    --page-bg: #151515;
+    --card-bg: #1c1c1c;
+    --panel-bg: #1a1a1a;
+    --ink: #f3f3f3;
+    --ink-soft: #e6e6e6;
+    --muted: #8a8a8a;
+    --border: #2a2a2a;
+    --rule-highlight: #262626;
+    --rule-shadow: #0b0b0b;
+    --side-bg: #111111;
+    --line: rgba(255, 255, 255, 0.07);
+    --text-2: #c7c7c7;
+    --soft: #8a8a8a;
+    --faint: #6b6b6b;
+    --fainter: #525252;
+    --surface: #1e1e1e;
+    --surface-hover: #252525;
+    --nav-active: #262626;
+    --border-hover: #3a3a3a;
+    --border-strong: #353535;
+    --fill: rgba(255, 255, 255, 0.07);
+    --lift: rgba(255, 255, 255, 0.025);
+    --lift-2: rgba(255, 255, 255, 0.05);
+    --glass: rgba(21, 21, 21, 0.88);
+    --band-bg: #1a1a1a;
+    --thumb-bg: #232323;
+    --avatar-bg: #262626;
+    --avatar-ring: #262626;
+    --checker-a: #1e1e1e;
+    --checker-b: #262626;
+    --primary: #3b1fe5;
+    --primary-hover: #4b33f0;
+    --on-primary: #fff;
+    --on-ink: #151515;
+    --switch-on: #3b1fe5;
+    --switch-off: rgba(255, 255, 255, 0.14);
+    --tip-bg: #2a2a2a;
+    --tip-fg: #f3f3f3;
+    --toast-bg: #232323;
+    --toast-fg: #f3f3f3;
+    --ok: #7fd1a0;
+    --ok-bg: #1b3b2a;
+    --ok-solid: #1f7a45;
+    --bad: #f4a3a9;
+    --bad-bg: #3e1c1c;
+    --bad-line: rgba(244, 163, 169, 0.3);
+    --bad-solid: #b42318;
+    --warn: #e8b98f;
+    --warn-bg: #41271d;
+    --ring: 0 0 0 3px rgba(99, 80, 255, 0.35);
+    --raise: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --pop-ring: rgba(255, 255, 255, 0.07);
+    --pop-shadow: rgba(0, 0, 0, 0.5);
+    --scrim: rgba(0, 0, 0, 0.6);
+    --hatch-veil: rgba(21, 21, 21, 0.7);
+    /* the cross-hatch, veiled: on the dark ground it would shout */
+    --band: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)),
+      url("/brand/footer-pattern-wide.svg") left center / auto 82px repeat-x, var(--band-bg);
+
+    color-scheme: dark;
+  }
+}
+
+/* the page behind the admin (overscroll, the drawer's gaps) follows it */
+:global(html):has(.app[data-theme="dark"]),
+:global(html):has(.login[data-theme="dark"]) {
+  background: #151515;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(html):has(.app[data-theme="system"]),
+  :global(html):has(.login[data-theme="system"]) {
+    background: #151515;
+    color-scheme: dark;
+  }
+}
+
+/* ------------------------------------------------------------ shell */
+
+.app {
+  --side-w: 264px;
+  /* the widest the work gets; on bigger screens it sits in the middle */
+  --main-max: 1600px;
+  display: grid;
+  grid-template-columns: var(--side-w) minmax(0, 1fr);
+  min-height: 100dvh;
+  background: var(--page-bg);
+  transition: grid-template-columns 320ms var(--ease-out-quint);
+}
+
+.app[data-collapsed] {
+  --side-w: 72px;
+}
+
+/* ------------------------------------------------------------ sidebar */
+
+.side {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  min-width: 0;
+  padding: 16px 12px 12px;
+  background: var(--side-bg);
+}
+
+/* the engraved rule down the sidebar's edge, as between the site's columns */
+.side::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule-highlight);
+  box-shadow: 1px 0 0 var(--rule-shadow);
+}
+
+/* who you are, and the collapse switch at the right of it */
+.sideHead {
+  position: relative;
+  padding-right: 34px;
+  transition: padding 320ms var(--ease-out-quint);
+}
+
+.brand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 6px 6px 18px;
+  border-radius: 10px;
+}
+
+.brandAvatar {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--thumb-bg);
+  box-shadow: 0 0 0 2px var(--avatar-ring);
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.brandText strong {
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  color: var(--ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brandText span {
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: var(--faint);
+}
+
+.nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  margin: 0 -4px;
+  padding: 0 4px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* it scrolls on short screens, without a bar in the way */
+  scrollbar-width: none;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+.navSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navGroup {
+  margin: 0 0 4px;
+  padding: 0 10px;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--faint);
+  transition: opacity 200ms var(--ease-out-quint);
+}
+
+.navLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  white-space: nowrap;
+  color: var(--text-2);
+  transition:
+    background-color 160ms var(--ease-out-quint),
+    color 160ms var(--ease-out-quint);
+}
+
+.navIcon {
+  flex: 0 0 auto;
+  color: var(--soft);
+  transition: color 160ms var(--ease-out-quint);
+}
+
+.navLink:hover {
+  background: var(--fill);
+  color: var(--ink);
+}
+
+.navLink:hover .navIcon {
+  color: var(--ink);
+}
+
+/* the page you are on: raised white, like a card on the grey */
+.navLink[data-active] {
+  border-color: var(--line);
+  background: var(--nav-active);
+  color: var(--ink);
+  box-shadow: var(--raise);
+}
+
+.navLink[data-active] .navIcon {
+  color: var(--ink);
+}
+
+.navLink:focus-visible,
+.brand:focus-visible,
+.sideToggle:focus-visible {
+  outline: 2px solid var(--ink-soft);
+  outline-offset: 1px;
+}
+
+.sideLabel {
+  overflow: hidden;
+  transition:
+    opacity 200ms var(--ease-out-quint),
+    transform 260ms var(--ease-out-quint);
+}
+
+/* the foot of the sidebar: the footer's cross-hatch, as the site's floor */
+.sideFoot {
+  position: relative;
+  flex: 0 0 auto;
+  height: 44px;
+  margin: 12px -12px -12px;
+  background: var(--band);
+}
+
+.sideFoot::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--rule-highlight);
+  box-shadow: 0 1px 0 var(--rule-shadow);
+}
+
+/* the collapse switch: at the right of the profile, sliding under the
+   avatar as the sidebar closes */
+.sideToggle {
+  position: absolute;
+  top: 6px;
+  left: calc(100% - 34px);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: none;
+  color: var(--soft);
+  cursor: pointer;
+  transition:
+    left 320ms var(--ease-out-quint),
+    top 320ms var(--ease-out-quint),
+    background-color 160ms var(--ease-out-quint),
+    border-color 160ms var(--ease-out-quint),
+    color 160ms var(--ease-out-quint);
+}
+
+.sideToggle:hover {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.app[data-collapsed] .sideHead {
+  padding-right: 0;
+  padding-bottom: 36px;
+}
+
+.app[data-collapsed] .sideToggle {
+  top: 46px;
+  left: 8px;
+}
+
+/* the toggle's drawing, taken apart: on a spring, the panel line slides
+   and fills, the ticks fold into it and the chevron swings round */
+.toggleIcon {
+  flex: 0 0 auto;
+  overflow: visible;
+}
+
+.togglePanel,
+.toggleLine,
+.toggleTicks,
+.toggleChevron {
+  transform-box: fill-box;
+  transition:
+    transform 520ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 260ms var(--ease-out-quint);
+}
+
+.togglePanel {
+  opacity: 0.12;
+  transform-origin: left center;
+}
+
+.toggleTicks {
+  transform-origin: left center;
+}
+
+.toggleChevron {
+  transform-origin: center;
+}
+
+.sideToggle:hover .toggleLine {
+  transform: translateX(-1.5px);
+}
+
+.sideToggle:hover .toggleChevron {
+  transform: translateX(-1.5px);
+}
+
+.app[data-collapsed] .togglePanel {
+  opacity: 0;
+  transform: scaleX(0.35);
+}
+
+.app[data-collapsed] .toggleLine {
+  transform: translateX(-3.5px);
+}
+
+.app[data-collapsed] .toggleTicks {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.app[data-collapsed] .toggleChevron {
+  transform: translateX(-2px) rotate(180deg);
+}
+
+.app[data-collapsed] .sideToggle:hover .toggleLine {
+  transform: translateX(-2px);
+}
+
+.app[data-collapsed] .sideToggle:hover .toggleChevron {
+  transform: translateX(0.5px) rotate(180deg);
+}
+
+/* ---- collapsed: icons only, the names as tooltips */
+
+.app[data-collapsed] .sideLabel,
+.app[data-collapsed] .navGroup {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app[data-collapsed] .sideLabel {
+  transform: translateX(-6px);
+}
+
+.app[data-collapsed] .navGroup {
+  height: 1px;
+  margin: 2px 10px 6px;
+  padding: 0;
+  background: var(--rule-shadow);
+  box-shadow: 0 1px 0 var(--rule-highlight);
+  opacity: 1;
+  font-size: 0;
+}
+
+.app[data-collapsed] .brand {
+  padding-left: 8px;
+}
+
+.app[data-collapsed] .navLink {
+  padding: 0 0 0 14px;
+}
+
+.app[data-collapsed] .nav {
+  overflow: visible;
+}
+
+.app[data-collapsed] [data-tip]:hover::after,
+.app[data-collapsed] [data-tip]:focus-visible::after {
+  content: attr(data-tip);
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 10px);
+  z-index: 40;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: var(--tip-bg);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--tip-fg);
+  transform: translateY(-50%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+.scrim {
+  display: none;
+}
+
+/* ------------------------------------------------------------ work area */
+
+.work {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 60px;
+  /* the bar spans the screen, its contents line up with the work below */
+  padding: 0 max(32px, calc((100% - var(--main-max)) / 2 + 32px));
+  background: var(--glass);
+  backdrop-filter: saturate(1.4) blur(10px);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px);
+}
+
+.topbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--rule-highlight);
+  box-shadow: 0 1px 0 var(--rule-shadow);
+}
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--faint);
+}
+
+.crumbs strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* says the data is made up, beside the breadcrumb */
+.demoTag {
+  flex: 0 0 auto;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--warn-bg);
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--warn);
+  cursor: help;
+}
+
+.topActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* the top bar's square icon buttons: the theme, the site, sign out */
+.topIcon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background-color 160ms var(--ease-out-quint),
+    border-color 160ms var(--ease-out-quint);
+}
+
+.topIcon:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+}
+
+.topIcon:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* light/dark: the sun's rays spin away as the moon swings in */
+.themeToggle {
+  composes: topIcon;
+}
+
+.themeToggle svg {
+  overflow: visible;
+}
+
+.themeSun,
+.themeRays,
+.themeMoon {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform 520ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 240ms var(--ease-out-quint);
+}
+
+.themeMoon {
+  opacity: 0;
+  transform: rotate(-70deg) scale(0.5);
+}
+
+.themeToggle[data-dark] .themeSun {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.themeToggle[data-dark] .themeRays {
+  transform: rotate(90deg) scale(0.6);
+}
+
+.themeToggle[data-dark] .themeMoon {
+  opacity: 1;
+  transform: none;
+}
+
+/* two classes, to outrank .iconBtn's display */
+.topbar .menuBtn {
+  display: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: var(--main-max);
+  min-width: 0;
+  margin-inline: auto;
+  padding: 28px 32px 72px;
+}
+
+/* ------------------------------------------------------------ page head */
+
+.pageHead {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+}
+
+.pageHead::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  right: -10px;
+  bottom: 0;
+  height: 1px;
+  background: var(--rule-highlight);
+  box-shadow: 0 1px 0 var(--rule-shadow);
+}
+
+.pageHeadMain {
+  display: flex;
+  flex: 1 1 420px;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* the page's icon in a small engraved square, its lines crossing at the
+   corners like every frame's */
+.pageIcon {
+  position: relative;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-top: 1px;
+  color: var(--ink);
+}
+
+.pageIcon::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--rule-highlight) 0 0) 0 5px / 100% 1px,
+    linear-gradient(var(--rule-shadow) 0 0) 0 6px / 100% 1px,
+    linear-gradient(var(--rule-highlight) 0 0) 0 calc(100% - 6px) / 100% 1px,
+    linear-gradient(var(--rule-shadow) 0 0) 0 calc(100% - 5px) / 100% 1px,
+    linear-gradient(var(--rule-highlight) 0 0) 5px 0 / 1px 100%,
+    linear-gradient(var(--rule-shadow) 0 0) 6px 0 / 1px 100%,
+    linear-gradient(var(--rule-highlight) 0 0) calc(100% - 6px) 0 / 1px 100%,
+    linear-gradient(var(--rule-shadow) 0 0) calc(100% - 5px) 0 / 1px 100%;
+  background-repeat: no-repeat;
+}
+
+.pageTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.78px;
+  color: var(--ink);
+}
+
+.pageNote {
+  max-width: 64ch;
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--soft);
+}
+
+.pageActions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* ------------------------------------------------------------ frames */
+
+/* The engraved frame: four hairlines on the page grey, each running 10px
+   past the corners, so they cross there like the site's top rule crosses
+   its side rules. Drawn on ::before, over the content's edge. */
+.frame {
+  position: relative;
+}
+
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--rule-highlight) 0 0) 0 10px / 100% 1px,
+    linear-gradient(var(--rule-shadow) 0 0) 0 11px / 100% 1px,
+    linear-gradient(var(--rule-highlight) 0 0) 0 calc(100% - 11px) / 100% 1px,
+    linear-gradient(var(--rule-shadow) 0 0) 0 calc(100% - 10px) / 100% 1px,
+    linear-gradient(var(--rule-highlight) 0 0) 10px 0 / 1px 100%,
+    linear-gradient(var(--rule-shadow) 0 0) 11px 0 / 1px 100%,
+    linear-gradient(var(--rule-highlight) 0 0) calc(100% - 11px) 0 / 1px 100%,
+    linear-gradient(var(--rule-shadow) 0 0) calc(100% - 10px) 0 / 1px 100%;
+  background-repeat: no-repeat;
+}
+
+/* a part of a page: a frame, its title over an engraved rule */
+.card {
+  composes: frame;
+  display: flex;
+  flex-direction: column;
+  scroll-margin-top: 120px;
+}
+
+.cardHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 15px 22px 14px;
+  box-shadow: var(--hair-b);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+}
+
+.cardNote {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--soft);
+}
+
+.cardBody {
+  padding: 20px 22px 22px;
+}
+
+/* a table or a lattice, run to the frame's edges and filling it */
+.cardFlush {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ------------------------------------------------------------ tables */
+
+/* A table in a frame: the head is the footer's band (grey under the
+   cross-hatch), each column head closed by an engraved rule like the
+   awards band; the rows are ruled like the About page's roles. */
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--ink-soft);
+}
+
+.table th {
+  height: 38px;
+  padding: 0 14px;
+  background: var(--band);
+  box-shadow: var(--hair-b), var(--hair-r);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--soft);
+}
+
+.table th:last-child {
+  box-shadow: var(--hair-b);
+}
+
+.table td {
+  padding: 12px 14px;
+  box-shadow: var(--hair-b);
+  vertical-align: middle;
+  transition: background-color 160ms var(--ease-out-quint);
+}
+
+.table tbody tr:last-child td {
+  box-shadow: none;
+}
+
+.table tbody tr:hover td {
+  background: var(--lift);
+}
+
+.table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.table td.num {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.muted {
+  color: var(--faint);
+}
+
+/* ------------------------------------------------------------ forms */
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-2);
+}
+
+.hint {
+  font-size: 12px;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: var(--faint);
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  color: var(--ink-soft);
+  transition:
+    border-color 160ms var(--ease-out-quint),
+    box-shadow 160ms var(--ease-out-quint);
+}
+
+.input:hover,
+.textarea:hover,
+.select:hover {
+  border-color: var(--border-hover);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--ink-soft);
+  box-shadow: var(--ring);
+}
+
+.textarea {
+  min-height: 92px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.checkbox input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--ink-soft);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+/* ------------------------------------------------------------ buttons */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  white-space: nowrap;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background-color 160ms var(--ease-out-quint),
+    border-color 160ms var(--ease-out-quint),
+    box-shadow 160ms var(--ease-out-quint);
+}
+
+.btn:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+}
+
+.btn:focus-visible,
+.iconBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.btnPrimary {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.btnPrimary:hover {
+  border-color: var(--primary-hover);
+  background: var(--primary-hover);
+}
+
+.btnDanger {
+  border-color: var(--bad-line);
+  color: var(--bad);
+}
+
+.btnDanger:hover {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.btnPrimary[data-state="saved"] {
+  border-color: var(--ok-solid);
+  background: var(--ok-solid);
+  color: #fff;
+}
+
+.btnDanger[data-armed] {
+  border-color: var(--bad-solid);
+  background: var(--bad-solid);
+  color: #fff;
+}
+
+.iconBtn {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background-color 160ms var(--ease-out-quint);
+}
+
+.iconBtn:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.iconBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.guard:empty {
+  display: none;
+}
+
+.guard {
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--bad);
+}
+
+/* ------------------------------------------------------------ rows */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  box-shadow: var(--hair-b);
+}
+
+.rowMain {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rowTitle {
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.rowMeta {
+  overflow: hidden;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--soft);
+}
+
+.thumb {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 44px;
+  border-radius: 6px;
+  background: var(--thumb-bg);
+  object-fit: cover;
+}
+
+.rowActions {
+  display: flex;
+  gap: 6px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--fill);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink-soft);
+}
+
+/* an empty list: a frame over the footer's band */
+.empty {
+  composes: frame;
+  margin: 0;
+  padding: 36px 24px;
+  background: var(--band);
+  font-size: 14px;
+  text-align: center;
+  color: var(--soft);
+}
+
+.notice {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--bad-bg);
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--bad);
+}
+
+/* optional extras, tucked away */
+.more {
+  margin-top: 16px;
+  padding-top: 14px;
+  box-shadow: var(--hair-t);
+}
+
+.moreHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--soft);
+  cursor: pointer;
+}
+
+.moreHead::-webkit-details-marker {
+  display: none;
+}
+
+.moreHead::before {
+  content: "›";
+  display: inline-block;
+  transition: transform 160ms var(--ease-out-quint);
+}
+
+.more[open] .moreHead::before {
+  transform: rotate(90deg);
+}
+
+.moreBody {
+  margin-top: 14px;
+}
+
+.mediaRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* ------------------------------------------------------------ modal */
+
+.modal {
+  width: min(720px, calc(100vw - 32px));
+  max-width: none;
+  max-height: min(860px, calc(100dvh - 48px));
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  /* the page grey, so the rules inside can be engraved like the page's */
+  background: var(--page-bg);
+  color: var(--ink-soft);
+  box-shadow:
+    0 0 0 1px var(--pop-ring),
+    0 24px 80px var(--pop-shadow);
+  overflow: hidden;
+}
+
+.modal::backdrop {
+  background: var(--scrim);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.modal[open] {
+  animation: modal-in 320ms var(--ease-out-quint);
+}
+
+.modal[open]::backdrop {
+  animation: fade 240ms ease;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.modalInner {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+}
+
+.modalHead {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px 16px;
+  background: var(--band);
+  box-shadow: var(--hair-b);
+}
+
+.modalTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+}
+
+.modalNote {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--soft);
+}
+
+.modalBody {
+  flex: 1;
+  min-height: 0;
+  padding: 20px 22px 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* a form's buttons stay at the foot of the dialog while it scrolls */
+.modalBody .actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  margin: 20px -22px 0;
+  padding: 14px 22px;
+  background: var(--glass);
+  box-shadow: var(--hair-t);
+  backdrop-filter: blur(6px);
+}
+
+/* ------------------------------------------------------------ toast */
+
+.toaster {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--toast-bg);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--toast-fg);
+  box-shadow:
+    0 0 0 1px var(--pop-ring),
+    0 10px 30px var(--pop-shadow);
+  animation: toast-in 320ms var(--ease-out-quint);
+}
+
+.toast svg {
+  color: #4ade80;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* ------------------------------------------------------------ login */
+
+.login {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 24px;
+  background:
+    linear-gradient(var(--hatch-veil), var(--hatch-veil)) center bottom / 100% 82px no-repeat,
+    url("/brand/footer-pattern-wide.svg") center bottom / auto 82px repeat-x,
+    var(--page-bg);
+}
+
+/* the site's frame: a rule across the top, one down each side */
+.login::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid var(--rule-highlight);
+  box-shadow:
+    1px 1px 0 var(--rule-shadow),
+    inset 1px 1px 0 var(--rule-shadow);
+  pointer-events: none;
+}
+
+.loginCard {
+  composes: frame;
+  width: 100%;
+  max-width: 380px;
+  padding: 28px;
+  background: var(--page-bg);
+}
+
+.loginBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.loginTitle {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: -0.6px;
+  color: var(--ink);
+}
+
+.loginNote {
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--soft);
+}
+
+/* ------------------------------------------------------------ narrow */
+
+@media (max-width: 1100px) {
+  .main {
+    padding: 24px 24px 64px;
+  }
+
+  .topbar {
+    padding: 0 24px;
+  }
+}
+
+/* phones and small tablets: the sidebar becomes a drawer */
+@media (max-width: 860px) {
+  .app,
+  .app[data-collapsed] {
+    --side-w: 272px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .side {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--side-w);
+    transform: translateX(-102%);
+    transition: transform 320ms var(--ease-out-quint);
+    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.12);
+  }
+
+  .app[data-menu-open] .side {
+    transform: none;
+  }
+
+  .app[data-menu-open] .scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 25;
+    display: block;
+    background: var(--scrim);
+  }
+
+  /* collapsing is a desktop idea; the drawer is always the full list */
+  .app[data-collapsed] .sideLabel,
+  .app[data-collapsed] .navGroup {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .app[data-collapsed] .navGroup {
+    height: auto;
+    margin: 0 0 4px;
+    padding: 0 10px;
+    background: none;
+    box-shadow: none;
+    font-size: 11px;
+  }
+
+  .app[data-collapsed] .navLink {
+    padding: 0 10px;
+  }
+
+  .sideFoot,
+  .sideToggle {
+    display: none;
+  }
+
+  .sideHead,
+  .app[data-collapsed] .sideHead {
+    padding: 0;
+  }
+
+  .topbar .menuBtn {
+    display: inline-grid;
+  }
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+
+  .main {
+    padding: 20px 16px 64px;
+  }
+
+  .pageTitle {
+    font-size: 22px;
+  }
+
+  .grid2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .modal {
+    width: 100vw;
+    max-height: 100dvh;
+    height: 100dvh;
+    border-radius: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app,
+  .side,
+  .modal[open],
+  .modal[open]::backdrop,
+  .toast,
+  .togglePanel,
+  .toggleLine,
+  .toggleTicks,
+  .toggleChevron,
+  .sideHead,
+  .sideToggle,
+  .themeSun,
+  .themeRays,
+  .themeMoon {
+    animation: none;
+    transition: none;
+  }
+}

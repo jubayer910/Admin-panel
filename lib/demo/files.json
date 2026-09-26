@@ -1,0 +1,707 @@
+[
+ {
+  "key": "demo/covers/northwind-analytics.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "northwind-analytics-cover.png",
+  "mime": "image/webp",
+  "size": 20290
+ },
+ {
+  "key": "demo/covers/lumen-banking-app.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "lumen-banking-app-cover.png",
+  "mime": "image/webp",
+  "size": 31910
+ },
+ {
+  "key": "demo/covers/tidal-brand-identity.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "tidal-brand-identity-cover.png",
+  "mime": "image/webp",
+  "size": 27202
+ },
+ {
+  "key": "demo/covers/orbit-travel-planner.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "orbit-travel-planner-cover.png",
+  "mime": "image/webp",
+  "size": 17398
+ },
+ {
+  "key": "demo/covers/pulse-health-dashboard.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "pulse-health-dashboard-cover.png",
+  "mime": "image/webp",
+  "size": 21622
+ },
+ {
+  "key": "demo/covers/kite-commerce.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "kite-commerce-cover.png",
+  "mime": "image/webp",
+  "size": 18182
+ },
+ {
+  "key": "demo/covers/ferro-logistics.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "ferro-logistics-cover.png",
+  "mime": "image/webp",
+  "size": 17822
+ },
+ {
+  "key": "demo/covers/aurora-energy-rebrand.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "aurora-energy-rebrand-cover.png",
+  "mime": "image/webp",
+  "size": 26172
+ },
+ {
+  "key": "demo/covers/cobalt-crm.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "cobalt-crm-cover.png",
+  "mime": "image/webp",
+  "size": 18862
+ },
+ {
+  "key": "demo/covers/maple-learning-app.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "maple-learning-app-cover.png",
+  "mime": "image/webp",
+  "size": 31966
+ },
+ {
+  "key": "demo/covers/quill-notes.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "quill-notes-cover.png",
+  "mime": "image/webp",
+  "size": 31260
+ },
+ {
+  "key": "demo/covers/harbor-real-estate.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "harbor-real-estate-cover.png",
+  "mime": "image/webp",
+  "size": 17910
+ },
+ {
+  "key": "demo/covers/nimbus-cloud-console.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "nimbus-cloud-console-cover.png",
+  "mime": "image/webp",
+  "size": 20726
+ },
+ {
+  "key": "demo/covers/sable-fashion-store.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "sable-fashion-store-cover.png",
+  "mime": "image/webp",
+  "size": 17808
+ },
+ {
+  "key": "demo/covers/echo-podcast-app.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "echo-podcast-app-cover.png",
+  "mime": "image/webp",
+  "size": 34476
+ },
+ {
+  "key": "demo/covers/vertex-ai-assistant.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "vertex-ai-assistant-cover.png",
+  "mime": "image/webp",
+  "size": 20270
+ },
+ {
+  "key": "demo/covers/juniper-coffee.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "juniper-coffee-cover.png",
+  "mime": "image/webp",
+  "size": 24910
+ },
+ {
+  "key": "demo/covers/atlas-maps-launch-film.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "atlas-maps-launch-film-cover.png",
+  "mime": "image/webp",
+  "size": 18558
+ },
+ {
+  "key": "demo/covers/prism-design-system.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "prism-design-system-cover.png",
+  "mime": "image/webp",
+  "size": 17786
+ },
+ {
+  "key": "demo/covers/relay-messaging.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "relay-messaging-cover.png",
+  "mime": "image/webp",
+  "size": 31672
+ },
+ {
+  "key": "demo/covers/bloom-florist.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "bloom-florist-cover.png",
+  "mime": "image/webp",
+  "size": 25624
+ },
+ {
+  "key": "demo/covers/summit-outdoor.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "summit-outdoor-cover.png",
+  "mime": "image/webp",
+  "size": 18044
+ },
+ {
+  "key": "demo/covers/onyx-security.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "onyx-security-cover.png",
+  "mime": "image/webp",
+  "size": 20996
+ },
+ {
+  "key": "demo/covers/waypoint-fleet.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "waypoint-fleet-cover.png",
+  "mime": "image/webp",
+  "size": 20376
+ },
+ {
+  "key": "demo/covers/crest-insurance.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "crest-insurance-cover.png",
+  "mime": "image/webp",
+  "size": 19278
+ },
+ {
+  "key": "demo/covers/fable-kids-books.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "fable-kids-books-cover.png",
+  "mime": "image/webp",
+  "size": 26342
+ },
+ {
+  "key": "demo/covers/glide-payments.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "glide-payments-cover.png",
+  "mime": "image/webp",
+  "size": 29610
+ },
+ {
+  "key": "demo/covers/mosaic-museum.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "mosaic-museum-cover.png",
+  "mime": "image/webp",
+  "size": 19820
+ },
+ {
+  "key": "demo/covers/tandem-hr.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "tandem-hr-cover.png",
+  "mime": "image/webp",
+  "size": 18588
+ },
+ {
+  "key": "demo/covers/verve-fitness.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "verve-fitness-cover.png",
+  "mime": "image/webp",
+  "size": 31780
+ },
+ {
+  "key": "demo/covers/lattice-fintech.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "lattice-fintech-cover.png",
+  "mime": "image/webp",
+  "size": 25110
+ },
+ {
+  "key": "demo/covers/beacon-nonprofit.webp",
+  "kind": "cover",
+  "width": 1600,
+  "height": 1200,
+  "filename": "beacon-nonprofit-cover.png",
+  "mime": "image/webp",
+  "size": 16686
+ },
+ {
+  "key": "demo/photos/morning-light-over-the-studio-desks.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "morning-light-over-the-studio-desks.jpg",
+  "alt": "Morning light over the studio desks",
+  "mime": "image/webp",
+  "size": 12184
+ },
+ {
+  "key": "demo/photos/sketching-flows-on-the-whiteboard.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "sketching-flows-on-the-whiteboard.jpg",
+  "alt": "Sketching flows on the whiteboard",
+  "mime": "image/webp",
+  "size": 12740
+ },
+ {
+  "key": "demo/photos/the-team-at-the-friday-review.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "the-team-at-the-friday-review.jpg",
+  "alt": "The team at the Friday review",
+  "mime": "image/webp",
+  "size": 11482
+ },
+ {
+  "key": "demo/photos/coffee-and-a-critique.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "coffee-and-a-critique.jpg",
+  "alt": "Coffee and a critique",
+  "mime": "image/webp",
+  "size": 11998
+ },
+ {
+  "key": "demo/photos/printing-the-brand-boards.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "printing-the-brand-boards.jpg",
+  "alt": "Printing the brand boards",
+  "mime": "image/webp",
+  "size": 13666
+ },
+ {
+  "key": "demo/photos/workshop-with-a-client.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "workshop-with-a-client.jpg",
+  "alt": "Workshop with a client",
+  "mime": "image/webp",
+  "size": 12734
+ },
+ {
+  "key": "demo/photos/late-night-launch.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "late-night-launch.jpg",
+  "alt": "Late-night launch",
+  "mime": "image/webp",
+  "size": 12608
+ },
+ {
+  "key": "demo/photos/plants-by-the-window.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "plants-by-the-window.jpg",
+  "alt": "Plants by the window",
+  "mime": "image/webp",
+  "size": 13078
+ },
+ {
+  "key": "demo/photos/moodboards-on-the-wall.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "moodboards-on-the-wall.jpg",
+  "alt": "Moodboards on the wall",
+  "mime": "image/webp",
+  "size": 13086
+ },
+ {
+  "key": "demo/photos/offsite-in-the-hills.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "offsite-in-the-hills.jpg",
+  "alt": "Offsite in the hills",
+  "mime": "image/webp",
+  "size": 12454
+ },
+ {
+  "key": "demo/photos/sticky-notes-everywhere.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "sticky-notes-everywhere.jpg",
+  "alt": "Sticky notes, everywhere",
+  "mime": "image/webp",
+  "size": 12456
+ },
+ {
+  "key": "demo/photos/demo-day.webp",
+  "kind": "photo",
+  "width": 1200,
+  "height": 1500,
+  "filename": "demo-day.jpg",
+  "alt": "Demo day",
+  "mime": "image/webp",
+  "size": 12422
+ },
+ {
+  "key": "demo/logos/northwind.svg",
+  "kind": "logo",
+  "width": 231,
+  "height": 80,
+  "filename": "northwind-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 337
+ },
+ {
+  "key": "demo/logos/lumen.svg",
+  "kind": "logo",
+  "width": 155,
+  "height": 80,
+  "filename": "lumen-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 371
+ },
+ {
+  "key": "demo/logos/orbit.svg",
+  "kind": "logo",
+  "width": 155,
+  "height": 80,
+  "filename": "orbit-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 292
+ },
+ {
+  "key": "demo/logos/tidal.svg",
+  "kind": "logo",
+  "width": 155,
+  "height": 80,
+  "filename": "tidal-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 354
+ },
+ {
+  "key": "demo/logos/pulse.svg",
+  "kind": "logo",
+  "width": 155,
+  "height": 80,
+  "filename": "pulse-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 333
+ },
+ {
+  "key": "demo/logos/kite.svg",
+  "kind": "logo",
+  "width": 136,
+  "height": 80,
+  "filename": "kite-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 370
+ },
+ {
+  "key": "demo/logos/ferro.svg",
+  "kind": "logo",
+  "width": 155,
+  "height": 80,
+  "filename": "ferro-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 292
+ },
+ {
+  "key": "demo/logos/aurora.svg",
+  "kind": "logo",
+  "width": 174,
+  "height": 80,
+  "filename": "aurora-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 355
+ },
+ {
+  "key": "demo/logos/cobalt.svg",
+  "kind": "logo",
+  "width": 174,
+  "height": 80,
+  "filename": "cobalt-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 334
+ },
+ {
+  "key": "demo/logos/maple.svg",
+  "kind": "logo",
+  "width": 155,
+  "height": 80,
+  "filename": "maple-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 371
+ },
+ {
+  "key": "demo/logos/harbor.svg",
+  "kind": "logo",
+  "width": 174,
+  "height": 80,
+  "filename": "harbor-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 293
+ },
+ {
+  "key": "demo/logos/nimbus.svg",
+  "kind": "logo",
+  "width": 174,
+  "height": 80,
+  "filename": "nimbus-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 355
+ },
+ {
+  "key": "demo/logos/vertex.svg",
+  "kind": "logo",
+  "width": 174,
+  "height": 80,
+  "filename": "vertex-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 334
+ },
+ {
+  "key": "demo/logos/juniper.svg",
+  "kind": "logo",
+  "width": 193,
+  "height": 80,
+  "filename": "juniper-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 373
+ },
+ {
+  "key": "demo/logos/prism.svg",
+  "kind": "logo",
+  "width": 155,
+  "height": 80,
+  "filename": "prism-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 292
+ },
+ {
+  "key": "demo/logos/summit.svg",
+  "kind": "logo",
+  "width": 174,
+  "height": 80,
+  "filename": "summit-logo.svg",
+  "mime": "image/svg+xml",
+  "size": 355
+ },
+ {
+  "key": "demo/avatars/ayesha-rahman.webp",
+  "kind": "avatar",
+  "width": 256,
+  "height": 256,
+  "filename": "ayesha-rahman.jpg",
+  "mime": "image/webp",
+  "size": 2506
+ },
+ {
+  "key": "demo/avatars/daniel-okafor.webp",
+  "kind": "avatar",
+  "width": 256,
+  "height": 256,
+  "filename": "daniel-okafor.jpg",
+  "mime": "image/webp",
+  "size": 2808
+ },
+ {
+  "key": "demo/avatars/sofia-marquez.webp",
+  "kind": "avatar",
+  "width": 256,
+  "height": 256,
+  "filename": "sofia-marquez.jpg",
+  "mime": "image/webp",
+  "size": 3076
+ },
+ {
+  "key": "demo/avatars/kenji-watanabe.webp",
+  "kind": "avatar",
+  "width": 256,
+  "height": 256,
+  "filename": "kenji-watanabe.jpg",
+  "mime": "image/webp",
+  "size": 3026
+ },
+ {
+  "key": "demo/avatars/emily-carter.webp",
+  "kind": "avatar",
+  "width": 256,
+  "height": 256,
+  "filename": "emily-carter.jpg",
+  "mime": "image/webp",
+  "size": 2582
+ },
+ {
+  "key": "demo/avatars/omar-haddad.webp",
+  "kind": "avatar",
+  "width": 256,
+  "height": 256,
+  "filename": "omar-haddad.jpg",
+  "mime": "image/webp",
+  "size": 2616
+ },
+ {
+  "key": "demo/avatars/priya-nair.webp",
+  "kind": "avatar",
+  "width": 256,
+  "height": 256,
+  "filename": "priya-nair.jpg",
+  "mime": "image/webp",
+  "size": 2504
+ },
+ {
+  "key": "demo/avatars/lea-schmidt.webp",
+  "kind": "avatar",
+  "width": 256,
+  "height": 256,
+  "filename": "lea-schmidt.jpg",
+  "mime": "image/webp",
+  "size": 2538
+ },
+ {
+  "key": "demo/avatars/marco-rossi.webp",
+  "kind": "avatar",
+  "width": 256,
+  "height": 256,
+  "filename": "marco-rossi.jpg",
+  "mime": "image/webp",
+  "size": 2488
+ },
+ {
+  "key": "demo/avatars/hannah-lee.webp",
+  "kind": "avatar",
+  "width": 256,
+  "height": 256,
+  "filename": "hannah-lee.jpg",
+  "mime": "image/webp",
+  "size": 1858
+ },
+ {
+  "key": "demo/awards/ui-ux.svg",
+  "kind": "award",
+  "width": 62,
+  "height": 114,
+  "filename": "ui-ux-ribbon.svg",
+  "mime": "image/svg+xml",
+  "size": 384
+ },
+ {
+  "key": "demo/awards/branding.svg",
+  "kind": "award",
+  "width": 62,
+  "height": 114,
+  "filename": "branding-ribbon.svg",
+  "mime": "image/svg+xml",
+  "size": 384
+ },
+ {
+  "key": "demo/awards/interaction.svg",
+  "kind": "award",
+  "width": 62,
+  "height": 114,
+  "filename": "interaction-ribbon.svg",
+  "mime": "image/svg+xml",
+  "size": 384
+ },
+ {
+  "key": "demo/awards/web-design.svg",
+  "kind": "award",
+  "width": 62,
+  "height": 114,
+  "filename": "web-design-ribbon.svg",
+  "mime": "image/svg+xml",
+  "size": 384
+ },
+ {
+  "key": "demo/icons/plan-starter.svg",
+  "kind": "icon",
+  "width": 96,
+  "height": 96,
+  "filename": "plan-icon-starter.svg",
+  "mime": "image/svg+xml",
+  "size": 296
+ },
+ {
+  "key": "demo/icons/plan-growth.svg",
+  "kind": "icon",
+  "width": 96,
+  "height": 96,
+  "filename": "plan-icon-growth.svg",
+  "mime": "image/svg+xml",
+  "size": 334
+ },
+ {
+  "key": "demo/icons/plan-custom.svg",
+  "kind": "icon",
+  "width": 96,
+  "height": 96,
+  "filename": "plan-icon-custom.svg",
+  "mime": "image/svg+xml",
+  "size": 309
+ }
+]

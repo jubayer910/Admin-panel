@@ -1,0 +1,225 @@
+/* The admin's sortable list, ruled like the About page's roles: one
+   engraved frame, each row closed by an engraved rule, a handle to drag
+   it, its place, a thumbnail, and the move and edit buttons. A row being
+   dragged is lifted off the page as a white strip. */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 62px;
+  padding: 8px 12px 8px 8px;
+  box-shadow: var(--hair-b);
+  transition: background-color 160ms var(--ease-out-quint);
+}
+
+.row:hover {
+  background: var(--lift);
+}
+
+.row[data-dragging] {
+  z-index: 5;
+  background: var(--surface);
+  box-shadow:
+    0 14px 36px var(--pop-shadow),
+    0 0 0 1px var(--pop-ring);
+  cursor: grabbing;
+}
+
+.handle {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 26px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fainter);
+  cursor: grab;
+  touch-action: none;
+  transition:
+    background-color 160ms var(--ease-out-quint),
+    color 160ms var(--ease-out-quint);
+}
+
+.handle:hover,
+.handle:focus-visible {
+  background: var(--fill);
+  color: var(--ink);
+}
+
+.place {
+  flex: 0 0 auto;
+  min-width: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--fainter);
+}
+
+.thumb {
+  flex: 0 0 auto;
+  width: 60px;
+  height: 42px;
+  border-radius: 6px;
+  background: var(--thumb-bg);
+  object-fit: cover;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 6px 4px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.title {
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.meta {
+  overflow: hidden;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--soft);
+}
+
+.moves {
+  display: flex;
+  gap: 4px;
+  opacity: 0.55;
+  transition: opacity 160ms var(--ease-out-quint);
+}
+
+.row:hover .moves,
+.row:focus-within .moves {
+  opacity: 1;
+}
+
+.iconBtn {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.iconBtn:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.iconBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.edit:hover {
+  background: var(--surface-hover);
+}
+
+.handle:focus-visible,
+.main:focus-visible,
+.iconBtn:focus-visible,
+.edit:focus-visible {
+  outline: 2px solid var(--ink-soft);
+  outline-offset: 1px;
+}
+
+.more {
+  margin-top: 16px;
+  padding-top: 14px;
+  box-shadow: var(--hair-t);
+}
+
+.moreHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--soft);
+  cursor: pointer;
+}
+
+.moreHead::-webkit-details-marker {
+  display: none;
+}
+
+.moreHead::before {
+  content: "›";
+  display: inline-block;
+  transition: transform 160ms var(--ease-out-quint);
+}
+
+.more[open] .moreHead::before {
+  transform: rotate(90deg);
+}
+
+.moreBody {
+  margin-top: 14px;
+}
+
+@media (max-width: 860px) {
+  .moves,
+  .place {
+    display: none;
+  }
+
+  .edit span {
+    display: none;
+  }
+
+  .edit {
+    width: 32px;
+    padding: 0;
+    justify-content: center;
+  }
+}

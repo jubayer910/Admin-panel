@@ -1,0 +1,148 @@
+/* /admin/bookings: the funnel in cells divided by engraved rules, like the
+   About page's awards band; the table has its own sheet (table.module.css). */
+
+.funnel {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 18px 22px 22px;
+  box-shadow: var(--hair-r);
+}
+
+.step:last-child {
+  box-shadow: none;
+}
+
+.stepLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.stepValue {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -1.1px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.stepHint {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+/* how many made it through, as a thin line on the cell's floor */
+.share {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 12px;
+  height: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--fill);
+}
+
+.share span {
+  display: block;
+  height: 100%;
+  border-radius: 0 2px 2px 0;
+  background: var(--ink-soft);
+}
+
+/* the webhook's state, at the right of the card's title */
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--faint);
+}
+
+.link i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--fainter);
+}
+
+.link[data-on] {
+  color: var(--ok);
+}
+
+.link[data-on] i {
+  background: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.16);
+}
+
+.steps {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--ink-soft);
+}
+
+.copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.code {
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: var(--lift-2);
+  box-shadow: inset 0 0 0 1px var(--border);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.state {
+  margin: 16px 0 0;
+  padding-top: 14px;
+  box-shadow: var(--hair-t);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.state strong {
+  color: var(--ok);
+  font-weight: 500;
+}
+
+@media (max-width: 1100px) {
+  .funnel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .step:nth-child(1) {
+    box-shadow: var(--hair-r), var(--hair-b);
+  }
+
+  .step:nth-child(2) {
+    box-shadow: var(--hair-b);
+  }
+
+  .step:nth-child(3) {
+    box-shadow: var(--hair-r);
+  }
+}

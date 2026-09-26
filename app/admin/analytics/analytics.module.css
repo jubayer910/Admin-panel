@@ -1,0 +1,819 @@
+/* /admin/analytics - chart roles as tokens, so every mark is written against a
+   role rather than a hex. Blue and orange are categorical slots 1 and 2, the
+   blue steps an ordinal ramp; both pass the palette validator on the page
+   grey (#F5F5F5) the charts now sit on, inside the admin's engraved frames
+   (the ramp's light end stepped to #7AADEC to clear it; orange's 2.9:1 is
+   relieved by the legend and the table view). Light-only, like the site. */
+
+.page {
+  --chart-surface: var(--page-bg);
+  --series-1: #2a78d6;
+  --series-1-wash: rgba(42, 120, 214, 0.1);
+  --series-2: #eb6834;
+  --seq-250: #7aadec;
+  --seq-350: #5598e7;
+  --seq-450: #2a78d6;
+  --seq-550: #1c5cab;
+  --seq-650: #104281;
+  --empty: #e8e8e5;
+  --grid: #e3e2dc;
+  --axis: #c3c2b7;
+  --ink-2: #52514e;
+  --ink-3: #898781;
+  --good: #006300;
+  --bad: #b42318;
+  --setup-bg: #fff7ed;
+  --setup-line: #fed7aa;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* dark: the same roles stepped for the #151515 ground, each re-validated
+   there (series 3987E5 / D95926; the ramp runs 184F95 up to 9EC5F4, so
+   "none" recedes into the dark and "most" is the brightest) */
+[data-theme="dark"] .page {
+  --chart-surface: var(--page-bg);
+  --series-1: #3987e5;
+  --series-1-wash: rgba(57, 135, 229, 0.16);
+  --series-2: #d95926;
+  --seq-250: #184f95;
+  --seq-350: #256abf;
+  --seq-450: #3987e5;
+  --seq-550: #6da7ec;
+  --seq-650: #9ec5f4;
+  --empty: #242424;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --ink-2: #c3c2b7;
+  --ink-3: #898781;
+  --good: #0ca30c;
+  --bad: #e66767;
+  --setup-bg: #2a1d14;
+  --setup-line: #5a3a24;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="system"] .page {
+    --chart-surface: var(--page-bg);
+    --series-1: #3987e5;
+    --series-1-wash: rgba(57, 135, 229, 0.16);
+    --series-2: #d95926;
+    --seq-250: #184f95;
+    --seq-350: #256abf;
+    --seq-450: #3987e5;
+    --seq-550: #6da7ec;
+    --seq-650: #9ec5f4;
+    --empty: #242424;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --ink-2: #c3c2b7;
+    --ink-3: #898781;
+    --good: #0ca30c;
+    --bad: #e66767;
+    --setup-bg: #2a1d14;
+    --setup-line: #5a3a24;
+  }
+}
+
+/* ---------------------------------------------------------------- header */
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--lift-2);
+  box-shadow: inset 0 0 0 1px var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0ca30c;
+  box-shadow: 0 0 0 3px rgba(12, 163, 12, 0.15);
+}
+
+.liveDot[data-idle] {
+  background: var(--axis);
+  box-shadow: none;
+}
+
+/* the date ranges: cells divided by engraved rules, like the awards band */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin: -4px -10px 0;
+  box-shadow: var(--hair-b);
+}
+
+.filter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 16px;
+  box-shadow: var(--hair-r);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--soft);
+  transition:
+    background-color 160ms var(--ease-out-quint),
+    color 160ms var(--ease-out-quint);
+}
+
+.filter:hover {
+  background: var(--lift);
+  color: var(--ink);
+}
+
+.filter[data-active] {
+  background: var(--lift-2);
+  color: var(--ink);
+}
+
+/* the chosen range's ink line, sitting on the strip's rule */
+.filter[data-active]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 2px;
+  bottom: 0;
+  height: 2px;
+  background: var(--ink-soft);
+}
+
+.filterGap {
+  flex: 1;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink-soft);
+}
+
+.toggleTrack {
+  position: relative;
+  width: 28px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--axis);
+  transition: background-color 160ms var(--ease-out-quint);
+}
+
+.toggleTrack > span {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 160ms var(--ease-out-quint);
+}
+
+.toggle[data-on] .toggleTrack {
+  background: var(--ink-soft);
+}
+
+.toggle[data-on] .toggleTrack > span {
+  transform: translateX(12px);
+}
+
+.ownNote {
+  margin: -6px 0 0;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--ink-2);
+}
+
+.ownNote a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.section {
+  margin: 14px 0 -4px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.4px;
+  color: var(--ink);
+}
+
+.sectionNote {
+  margin: -12px 0 0;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--ink-3);
+}
+
+/* ---------------------------------------------------------------- setup */
+
+.setup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: var(--setup-bg);
+  border: 1px solid var(--setup-line);
+}
+
+.setupTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  color: var(--ink);
+}
+
+.setup ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--ink-2);
+}
+
+.setup a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------- tiles */
+
+/* the figures in a ruled lattice, like the About page's awards band */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px 20px;
+  box-shadow: var(--hair-r), var(--hair-b);
+}
+
+.tileLabel {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink-2);
+}
+
+/* proportional figures: a lone big number, not a column */
+.tileValue {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.6px;
+  color: var(--ink);
+}
+
+.delta {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink-3);
+}
+
+.delta[data-tone="good"] {
+  color: var(--good);
+}
+
+.delta[data-tone="bad"] {
+  color: var(--bad);
+}
+
+.tileHint {
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: var(--ink-3);
+}
+
+/* ---------------------------------------------------------------- cards */
+
+.grid2,
+.grid3 {
+  display: grid;
+  gap: 20px;
+}
+
+.grid2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* a part: an engraved frame (the admin's), its title over an engraved rule */
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cardHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px 13px;
+  box-shadow: var(--hair-b);
+}
+
+.cardBody {
+  flex: 1;
+  min-width: 0;
+  padding: 18px 20px 20px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+}
+
+.cardNote {
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: var(--ink-3);
+}
+
+.empty {
+  margin: 0;
+  padding: 18px 0 6px;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--ink-3);
+}
+
+/* the UTM example is one long word; let it break on a phone */
+.empty code {
+  overflow-wrap: anywhere;
+}
+
+/* ---------------------------------------------------------------- bar list */
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+.barLabel {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--ink-soft);
+}
+
+.barValue {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.barValue small {
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+/* thin, square at the baseline, rounded at the data end */
+.track {
+  grid-column: 1 / -1;
+  height: 6px;
+  border-radius: 0 3px 3px 0;
+  background: transparent;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: 0 3px 3px 0;
+  background: var(--series-1);
+}
+
+/* ---------------------------------------------------------------- tables */
+
+/* tables run to the frame's edges: the heads are the footer's band, the
+   rows ruled like the About page's roles */
+.tableWrap {
+  overflow-x: auto;
+  margin: 0 -20px;
+}
+
+.cardBody > .tableWrap:first-child {
+  margin-top: -18px;
+}
+
+.cardBody > .tableWrap:last-child {
+  margin-bottom: -20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+}
+
+.table th {
+  height: 36px;
+  padding: 0 12px;
+  background: var(--band);
+  box-shadow: var(--hair-b), var(--hair-r);
+  text-align: left;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--soft);
+  white-space: nowrap;
+}
+
+.table th:last-child {
+  box-shadow: var(--hair-b);
+}
+
+.table td {
+  padding: 10px 12px;
+  box-shadow: var(--hair-b);
+  color: var(--ink-soft);
+  vertical-align: top;
+}
+
+.table th:first-child,
+.table td:first-child {
+  padding-left: 20px;
+}
+
+.table th:last-child,
+.table td:last-child {
+  padding-right: 20px;
+}
+
+.table tr:hover td {
+  background: var(--lift);
+}
+
+.cardBody > .tableWrap:last-child tbody tr:last-child td {
+  box-shadow: none;
+}
+
+.table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.table td.num {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.muted {
+  color: var(--ink-3);
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--fill);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.more {
+  margin: 16px -20px -20px;
+  padding: 12px 20px;
+  box-shadow: var(--hair-t);
+}
+
+.more .tableWrap {
+  margin-bottom: -12px;
+}
+
+.more summary {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink-3);
+}
+
+.more[open] summary {
+  margin-bottom: 10px;
+}
+
+/* ---------------------------------------------------------------- funnel */
+
+.funnel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.funnelStep {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 12px;
+}
+
+.funnelBar {
+  grid-column: 1 / -1;
+  height: 22px;
+  border-radius: 0 4px 4px 0;
+  background: var(--empty);
+  overflow: hidden;
+}
+
+.funnelBar > span {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ---------------------------------------------------------------- charts */
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink-2);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lineKey {
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.plot {
+  position: relative;
+  width: 100%;
+}
+
+.plot svg {
+  display: block;
+  overflow: visible;
+  outline: none;
+}
+
+.plot svg:focus-visible {
+  outline: 2px solid var(--border-hover);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.grid {
+  stroke: var(--grid);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.baseline {
+  stroke: var(--axis);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.tickY,
+.tickX,
+.peak {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  fill: var(--ink-3);
+}
+
+.tickY {
+  text-anchor: end;
+  dominant-baseline: middle;
+}
+
+.peak {
+  text-anchor: middle;
+  font-weight: 500;
+  fill: var(--ink-2);
+}
+
+.line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.crosshair {
+  stroke: var(--axis);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+/* the surface ring keeps a dot legible where it crosses a line */
+.dot {
+  stroke: var(--chart-surface);
+  stroke-width: 2;
+}
+
+.plot rect[tabindex]:focus-visible {
+  outline: none;
+  fill: var(--fill);
+}
+
+.tip {
+  position: absolute;
+  z-index: 2;
+  min-width: 150px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow:
+    0 0 0 1px var(--pop-ring),
+    0 8px 24px var(--pop-shadow);
+  pointer-events: none;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: var(--ink-2);
+}
+
+.tipHead {
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.tipRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.6;
+}
+
+.tipRow strong {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------- heatmap */
+
+.heatWrap {
+  overflow-x: auto;
+}
+
+.heat {
+  display: grid;
+  grid-template-columns: 36px repeat(24, minmax(14px, 1fr));
+  gap: 2px;
+  min-width: 460px;
+}
+
+.heatRow {
+  display: contents;
+}
+
+.heatHour,
+.heatDay {
+  font-size: 11px;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+}
+
+.heatHour {
+  padding-bottom: 2px;
+}
+
+.heatDay {
+  align-self: center;
+}
+
+.cell {
+  aspect-ratio: 1;
+  border-radius: 3px;
+  outline: none;
+  transition: transform 120ms var(--ease-out-quint);
+}
+
+.cell[data-on],
+.cell:focus-visible {
+  transform: scale(1.12);
+  box-shadow: 0 0 0 2px var(--chart-surface), 0 0 0 3px var(--ink-soft);
+}
+
+.heatFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: var(--ink-3);
+}
+
+.heatRead {
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.scale {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.scale i {
+  display: inline-block;
+  width: 14px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------- narrow */
+
+@media (max-width: 1100px) {
+  .kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 809.98px) {
+  .grid2,
+  .grid3 {
+    grid-template-columns: 1fr;
+  }
+}
