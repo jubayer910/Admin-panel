@@ -19,6 +19,7 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@hugeicons/core-free-icons": "^4.3.5",
     "@hugeicons/react": "^1.1.10",
+    "@vercel/analytics": "^2.0.1",
     "next": "16.3.6",
     "react": "19.2.8",
     "react-dom": "19.2.8",
